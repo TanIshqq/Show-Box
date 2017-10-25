@@ -16,4 +16,10 @@ public interface Services {
     @GET("movie/upcoming?api_key=4db11af8b81b5f51233f56e9078e9c07&language=en-US&page=1%20Code%20Generati")
     Call<Movies1> getUpcomingMovies();
 
+    @GET(" movie/top_rated?api_key=4db11af8b81b5f51233f56e9078e9c07&language=en-US&page=1")
+    Call<Movies1> getTopRatedMovies();
+
+    @GET("movie/now_playing?api_key=4db11af8b81b5f51233f56e9078e9c07&language=en-US&page=1")
+    Call<Movies1> getPlayingMovies();
+
 }

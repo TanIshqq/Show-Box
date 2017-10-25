@@ -11,23 +11,23 @@ import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 
 /**
- * Created by Lenovo on 25-10-2017.
+ * Created by Lenovo on 26-10-2017.
  */
 
-public class UpMo_LayoutAdapter extends RecyclerView.Adapter<UpMo_LayoutAdapter.MovieViewHolder> {
+public class Play_LayoutAdapter extends RecyclerView.Adapter<Play_LayoutAdapter.MovieViewHolder> {
 
     private Context mContext;
     private Movies1.Movies mMovies[];
-    private UpMo_LayoutAdapter.MovieClickListener mListener;
+    private Play_LayoutAdapter.MovieClickListener mListener;
 
     @Override
-    public UpMo_LayoutAdapter.MovieViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public Play_LayoutAdapter.MovieViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(mContext).inflate(R.layout.row_layout,parent,false);
-        return new UpMo_LayoutAdapter.MovieViewHolder(itemView,mListener);
+        return new Play_LayoutAdapter.MovieViewHolder(itemView,mListener);
     }
 
     @Override
-    public void onBindViewHolder(UpMo_LayoutAdapter.MovieViewHolder holder, int position) {
+    public void onBindViewHolder(Play_LayoutAdapter.MovieViewHolder holder, int position) {
 
         Movies1.Movies movie = mMovies[position];
         holder.titleTextView.setText(movie.getTitle());
@@ -53,7 +53,7 @@ public class UpMo_LayoutAdapter extends RecyclerView.Adapter<UpMo_LayoutAdapter.
     }
 
 
-    public UpMo_LayoutAdapter(Context context,Movies1.Movies movies1[]){
+    public Play_LayoutAdapter(Context context,Movies1.Movies movies1[]){
         mContext = context;
         this.mMovies = movies1;
     }
@@ -65,9 +65,9 @@ public class UpMo_LayoutAdapter extends RecyclerView.Adapter<UpMo_LayoutAdapter.
         TextView adultTextView;
         TextView dateTextView;
         ImageView poster;
-        UpMo_LayoutAdapter.MovieClickListener mMovieClickListener;
+        Play_LayoutAdapter.MovieClickListener mMovieClickListener;
 
-        public MovieViewHolder(View itemView,UpMo_LayoutAdapter.MovieClickListener listener) {
+        public MovieViewHolder(View itemView,Play_LayoutAdapter.MovieClickListener listener) {
             super(itemView);
             itemView.setOnClickListener(this);
             mMovieClickListener = listener;

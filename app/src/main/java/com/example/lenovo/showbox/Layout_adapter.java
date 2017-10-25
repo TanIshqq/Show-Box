@@ -41,7 +41,7 @@ import java.util.List;
                 holder.adultTextView.setText("ADULT");
             }
             holder.voteTextView.setText(movie.getVote_average() + "");
-            Picasso.with(mContext).load(movie.getPoster()).resize(2000, 900).centerInside().into(holder.poster);
+            Picasso.with(mContext).load(movie.getPoster()).resize(2300, 1000).centerInside().into(holder.poster);
 
         }
 

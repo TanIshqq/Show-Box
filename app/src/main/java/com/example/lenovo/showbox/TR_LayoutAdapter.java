@@ -11,23 +11,23 @@ import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 
 /**
- * Created by Lenovo on 25-10-2017.
+ * Created by Lenovo on 26-10-2017.
  */
 
-public class UpMo_LayoutAdapter extends RecyclerView.Adapter<UpMo_LayoutAdapter.MovieViewHolder> {
+public class TR_LayoutAdapter extends RecyclerView.Adapter<TR_LayoutAdapter.MovieViewHolder> {
 
     private Context mContext;
     private Movies1.Movies mMovies[];
-    private UpMo_LayoutAdapter.MovieClickListener mListener;
+    private TR_LayoutAdapter.MovieClickListener mListener;
 
     @Override
-    public UpMo_LayoutAdapter.MovieViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public TR_LayoutAdapter.MovieViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(mContext).inflate(R.layout.row_layout,parent,false);
-        return new UpMo_LayoutAdapter.MovieViewHolder(itemView,mListener);
+        return new TR_LayoutAdapter.MovieViewHolder(itemView,mListener);
     }
 
     @Override
-    public void onBindViewHolder(UpMo_LayoutAdapter.MovieViewHolder holder, int position) {
+    public void onBindViewHolder(TR_LayoutAdapter.MovieViewHolder holder, int position) {
 
         Movies1.Movies movie = mMovies[position];
         holder.titleTextView.setText(movie.getTitle());
@@ -53,7 +53,7 @@ public class UpMo_LayoutAdapter extends RecyclerView.Adapter<UpMo_LayoutAdapter.
     }
 
 
-    public UpMo_LayoutAdapter(Context context,Movies1.Movies movies1[]){
+    public TR_LayoutAdapter(Context context,Movies1.Movies movies1[]){
         mContext = context;
         this.mMovies = movies1;
     }
@@ -65,9 +65,9 @@ public class UpMo_LayoutAdapter extends RecyclerView.Adapter<UpMo_LayoutAdapter.
         TextView adultTextView;
         TextView dateTextView;
         ImageView poster;
-        UpMo_LayoutAdapter.MovieClickListener mMovieClickListener;
+        TR_LayoutAdapter.MovieClickListener mMovieClickListener;
 
-        public MovieViewHolder(View itemView,UpMo_LayoutAdapter.MovieClickListener listener) {
+        public MovieViewHolder(View itemView,TR_LayoutAdapter.MovieClickListener listener) {
             super(itemView);
             itemView.setOnClickListener(this);
             mMovieClickListener = listener;
@@ -91,5 +91,7 @@ public class UpMo_LayoutAdapter extends RecyclerView.Adapter<UpMo_LayoutAdapter.
         }
     }
 }
+
+
 
 

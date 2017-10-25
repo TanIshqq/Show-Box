@@ -71,6 +71,23 @@
 
             </android.support.v7.widget.RecyclerView>
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/box4"
+                android:textSize="20dp"
+                android:layout_margin="20dp"
+                android:textColor="@android:color/black"
+                android:textAlignment="center"
+                />
+
+            <android.support.v7.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/recyclerView3">
+
+            </android.support.v7.widget.RecyclerView>
+
 
             <com.wang.avi.AVLoadingIndicatorView
                 android:id="@+id/avi"
