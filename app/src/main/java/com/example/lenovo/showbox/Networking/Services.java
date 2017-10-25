@@ -1,7 +1,6 @@
-package com.example.lenovo.showbox;
+package com.example.lenovo.showbox.Networking;
 
 import retrofit2.Call;
-import retrofit2.Callback;
 import retrofit2.http.GET;
 
 /**

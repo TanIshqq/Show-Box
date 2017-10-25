@@ -1,4 +1,4 @@
-package com.example.lenovo.showbox;
+package com.example.lenovo.showbox.Adapters;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -8,26 +8,28 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.lenovo.showbox.Networking.Movies1;
+import com.example.lenovo.showbox.R;
 import com.squareup.picasso.Picasso;
 
 /**
  * Created by Lenovo on 26-10-2017.
  */
 
-public class Play_LayoutAdapter extends RecyclerView.Adapter<Play_LayoutAdapter.MovieViewHolder> {
+public class TR_LayoutAdapter extends RecyclerView.Adapter<TR_LayoutAdapter.MovieViewHolder> {
 
     private Context mContext;
     private Movies1.Movies mMovies[];
-    private Play_LayoutAdapter.MovieClickListener mListener;
+    private TR_LayoutAdapter.MovieClickListener mListener;
 
     @Override
-    public Play_LayoutAdapter.MovieViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public TR_LayoutAdapter.MovieViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(mContext).inflate(R.layout.row_layout,parent,false);
-        return new Play_LayoutAdapter.MovieViewHolder(itemView,mListener);
+        return new TR_LayoutAdapter.MovieViewHolder(itemView,mListener);
     }
 
     @Override
-    public void onBindViewHolder(Play_LayoutAdapter.MovieViewHolder holder, int position) {
+    public void onBindViewHolder(TR_LayoutAdapter.MovieViewHolder holder, int position) {
 
         Movies1.Movies movie = mMovies[position];
         holder.titleTextView.setText(movie.getTitle());
@@ -53,7 +55,7 @@ public class Play_LayoutAdapter extends RecyclerView.Adapter<Play_LayoutAdapter.
     }
 
 
-    public Play_LayoutAdapter(Context context,Movies1.Movies movies1[]){
+    public TR_LayoutAdapter(Context context,Movies1.Movies movies1[]){
         mContext = context;
         this.mMovies = movies1;
     }
@@ -65,9 +67,9 @@ public class Play_LayoutAdapter extends RecyclerView.Adapter<Play_LayoutAdapter.
         TextView adultTextView;
         TextView dateTextView;
         ImageView poster;
-        Play_LayoutAdapter.MovieClickListener mMovieClickListener;
+        TR_LayoutAdapter.MovieClickListener mMovieClickListener;
 
-        public MovieViewHolder(View itemView,Play_LayoutAdapter.MovieClickListener listener) {
+        public MovieViewHolder(View itemView,TR_LayoutAdapter.MovieClickListener listener) {
             super(itemView);
             itemView.setOnClickListener(this);
             mMovieClickListener = listener;
@@ -91,5 +93,7 @@ public class Play_LayoutAdapter extends RecyclerView.Adapter<Play_LayoutAdapter.
         }
     }
 }
+
+
 
 

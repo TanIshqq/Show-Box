@@ -1,4 +1,4 @@
-package com.example.lenovo.showbox;
+package com.example.lenovo.showbox.Networking;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;

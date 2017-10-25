@@ -8,7 +8,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.lenovo.showbox.MainActivity">
+    tools:context="com.example.lenovo.showbox.Activities.MainActivity">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -19,6 +19,23 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
+
+            <android.support.v7.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="10dp">
+
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="match_parent"
+                    android:layout_height="210dp"
+                    app:srcCompat="@drawable/collage" />
+
+
+            </android.support.v7.widget.CardView>
+
 
             <TextView
                 android:layout_width="match_parent"

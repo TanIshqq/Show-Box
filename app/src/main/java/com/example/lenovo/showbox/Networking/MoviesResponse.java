@@ -1,9 +1,9 @@
-package com.example.lenovo.showbox;
+package com.example.lenovo.showbox.Networking;
 
+import com.example.lenovo.showbox.Networking.Movies1;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Lenovo on 23-10-2017.

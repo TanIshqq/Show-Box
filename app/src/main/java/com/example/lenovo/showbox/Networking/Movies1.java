@@ -1,4 +1,4 @@
-package com.example.lenovo.showbox;
+package com.example.lenovo.showbox.Networking;
 
 import com.google.gson.annotations.SerializedName;
 
