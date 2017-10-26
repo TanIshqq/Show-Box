@@ -8,15 +8,20 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.lenovo.showbox.Adapters.Layout_adapter;
 import com.example.lenovo.showbox.Adapters.Play_LayoutAdapter;
 import com.example.lenovo.showbox.Adapters.TR_LayoutAdapter;
+import com.example.lenovo.showbox.Adapters.TvPopularAdapter;
+import com.example.lenovo.showbox.Adapters.Tv_Latest_Adapter;
+import com.example.lenovo.showbox.Adapters.Tv_OnAir_Adapter;
+import com.example.lenovo.showbox.Adapters.Tv_TR_Adapter;
 import com.example.lenovo.showbox.Adapters.UpMo_LayoutAdapter;
 import com.example.lenovo.showbox.Networking.Movies1;
 import com.example.lenovo.showbox.Networking.Services;
+import com.example.lenovo.showbox.Networking.TvShows1;
 import com.example.lenovo.showbox.Networking.apiClient;
 import com.example.lenovo.showbox.R;
 import com.wang.avi.AVLoadingIndicatorView;
@@ -34,9 +39,17 @@ public class MainActivity extends AppCompatActivity {
     UpMo_LayoutAdapter UMAdapter;
     TR_LayoutAdapter TRAdapter;
     Play_LayoutAdapter PLAdapter;
-    private Layout_adapter mAdapter;
+    Layout_adapter mAdapter;
+    TvPopularAdapter nAdapter;
+    Tv_Latest_Adapter nLAdapter;
+    Tv_OnAir_Adapter nOAdapter;
+    Tv_TR_Adapter nTRAdapter;
     private AVLoadingIndicatorView avi;
     Movies1.Movies movies[] ;
+    TvShows1.TvShows nshows[];
+    TvShows1.TvShows nLshows[];
+    TvShows1.TvShows nOAshows[];
+    TvShows1.TvShows nTRshows[];
     Movies1.Movies UMmovies[];
     Movies1.Movies TRmovies[];
     Movies1.Movies PLmovies[];
@@ -44,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
     TextView box2;
     TextView box3;
     TextView box4;
-
+    ImageView imageView;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -57,6 +70,8 @@ public class MainActivity extends AppCompatActivity {
                     box2 = (TextView)findViewById(R.id.box2);
                     box3 = (TextView)findViewById(R.id.box3);
                     box4 = (TextView)findViewById(R.id.box4);
+                    imageView = (ImageView)findViewById(R.id.imageView);
+                    imageView.setImageResource(R.drawable.collage);
                     avi = (AVLoadingIndicatorView) findViewById(R.id.avi);
                     Services service = apiClient.getClient().create(Services.class);
 
@@ -131,8 +146,84 @@ public class MainActivity extends AppCompatActivity {
                     return true;
 
                 case R.id.navigation_shows:
-//                    mTextMessage.setText(R.string.title_shows);
+                    box1 = (TextView)findViewById(R.id.box1);
+                    box2 = (TextView)findViewById(R.id.box2);
+                    box3 = (TextView)findViewById(R.id.box3);
+                    box4 = (TextView)findViewById(R.id.box4);
+                    imageView = (ImageView)findViewById(R.id.imageView);
+                    imageView.setImageResource(R.drawable.collage1);
+                    avi = (AVLoadingIndicatorView) findViewById(R.id.avi);
+                    Services service1 = apiClient.getClient().create(Services.class);
+                    Call<TvShows1> TvResponseCall = service1.getPopularTvShows();
+                    Call<TvShows1> TvResponseCall1 = service1.getTodaysShows();
+                    Call<TvShows1> TvResponseCall2 = service1.getTopRatedTvShows();
+                    Call<TvShows1> TvResponseCall3 = service1.getOnAirTvShows();
+
+                    avi.setVisibility(View.VISIBLE);
+                    avi.smoothToShow();
+
+                    TvResponseCall.enqueue(new Callback<TvShows1>() {
+                        @Override
+                        public void onResponse(Call<TvShows1> call, Response<TvShows1> response) {
+                            TvShows1 tvshows1 = response.body();
+                            nshows = tvshows1.getResults();
+                            setmyTvadapter();
+
+                        }
+
+                        @Override
+                        public void onFailure(Call<TvShows1> call, Throwable t) {
+
+                        }
+                    });
+
+                    TvResponseCall1.enqueue(new Callback<TvShows1>() {
+                        @Override
+                        public void onResponse(Call<TvShows1> call, Response<TvShows1> response) {
+                            TvShows1 tvshows1 = response.body();
+                            nLshows = tvshows1.getResults();
+                            setnLTvadapter();
+
+                        }
+
+                        @Override
+                        public void onFailure(Call<TvShows1> call, Throwable t) {
+
+                        }
+                    });
+
+                    TvResponseCall2.enqueue(new Callback<TvShows1>() {
+                        @Override
+                        public void onResponse(Call<TvShows1> call, Response<TvShows1> response) {
+                            TvShows1 tvshows1 = response.body();
+                            nTRshows = tvshows1.getResults();
+                            setnTRTvadapter();
+
+                        }
+
+                        @Override
+                        public void onFailure(Call<TvShows1> call, Throwable t) {
+
+                        }
+                    });
+
+                    TvResponseCall3.enqueue(new Callback<TvShows1>() {
+                        @Override
+                        public void onResponse(Call<TvShows1> call, Response<TvShows1> response) {
+                            TvShows1 tvshows1 = response.body();
+                            nOAshows = tvshows1.getResults();
+                            setnOATvadapter();
+
+                        }
+
+                        @Override
+                        public void onFailure(Call<TvShows1> call, Throwable t) {
+
+                        }
+                    });
+
                     return true;
+
                 case R.id.navigation_favourites:
 //                    mTextMessage.setText(R.string.title_favourites);
                     return true;
@@ -146,7 +237,7 @@ public class MainActivity extends AppCompatActivity {
         mAdapter = new Layout_adapter(this,movies);
         mRecyclerView.setAdapter(mAdapter);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL,false));
-        box1.setText("Popular");
+        box1.setText("Popular Movies");
         mAdapter.notifyDataSetChanged();
     }
 
@@ -154,7 +245,7 @@ public class MainActivity extends AppCompatActivity {
         UMAdapter = new UpMo_LayoutAdapter(this,UMmovies);
         UMRecyclerView.setAdapter(UMAdapter);
         UMRecyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL,false));
-        box2.setText("Upcoming");
+        box2.setText("Upcoming Movies");
         UMAdapter.notifyDataSetChanged();
     }
 
@@ -162,24 +253,57 @@ public class MainActivity extends AppCompatActivity {
         TRAdapter = new TR_LayoutAdapter(this,TRmovies);
         TRRecyclerView.setAdapter(TRAdapter);
         TRRecyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL,false));
-        box3.setText("Top Rated");
+        box3.setText("Top Rated Movies");
         TRAdapter.notifyDataSetChanged();
     }
 
     private void PLsetmyadapter() {
         PLAdapter = new Play_LayoutAdapter(this,PLmovies);
-        PLRecyclerView.setAdapter(UMAdapter);
+        PLRecyclerView.setAdapter(PLAdapter);
         PLRecyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL,false));
         avi.smoothToHide();
         avi.setVisibility(View.GONE);
-        box4.setText("Now Playing");
+        box4.setText("Now Playing Movies");
         PLAdapter.notifyDataSetChanged();
+    }
+
+    private void setmyTvadapter() {
+        nAdapter = new TvPopularAdapter(this,nshows);
+        mRecyclerView.setAdapter(nAdapter);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL,false));
+        box1.setText("Popular Shows");
+        nAdapter.notifyDataSetChanged();
+    }
+
+    private void setnLTvadapter() {
+        nLAdapter = new Tv_Latest_Adapter(this,nLshows);
+        UMRecyclerView.setAdapter(nLAdapter);
+        UMRecyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL,false));
+        box2.setText("Screenings Today");
+        nLAdapter.notifyDataSetChanged();
+    }
+
+    private void setnTRTvadapter() {
+        nTRAdapter = new Tv_TR_Adapter(this,nTRshows);
+        TRRecyclerView.setAdapter(nTRAdapter);
+        TRRecyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL,false));
+        box3.setText("Top Rated Shows");
+        nTRAdapter.notifyDataSetChanged();
+    }
+
+    private void setnOATvadapter() {
+        nOAdapter = new Tv_OnAir_Adapter(this,nOAshows);
+        PLRecyclerView.setAdapter(nOAdapter);
+        PLRecyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL,false));
+        avi.smoothToHide();
+        avi.setVisibility(View.GONE);
+        box4.setText("On Air Shows");
+        nOAdapter.notifyDataSetChanged();
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_main);
 
         mRecyclerView = (RecyclerView)findViewById(R.id.recyclerView);

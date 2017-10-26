@@ -42,6 +42,7 @@ import com.squareup.picasso.Picasso;
             holder.voteTextView.setText(movie.getVote_average() + "");
             Picasso.with(mContext).load(movie.getPoster()).resize(2300, 1000).centerInside().into(holder.poster);
 
+
         }
 
         @Override
