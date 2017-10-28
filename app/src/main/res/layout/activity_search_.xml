@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.lenovo.showbox.Activities.Search_Activity"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/moviesearchbox"
+                android:textSize="20dp"
+                android:layout_margin="20dp"
+                android:textColor="@android:color/black"
+                android:textAlignment="center"
+                />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/movierecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            </android.support.v7.widget.RecyclerView>
+
+            <com.wang.avi.AVLoadingIndicatorView
+                android:id="@+id/avi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/AVLoadingIndicatorView.Large"
+                android:visibility="invisible"
+                android:layout_gravity="center"
+                app:indicatorName="PacmanIndicator"
+                app:indicatorColor="@android:color/holo_red_dark"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvsearchbox"
+                android:textSize="20dp"
+                android:layout_margin="20dp"
+                android:textColor="@android:color/black"
+                android:textAlignment="center"
+                />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/tvrecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            </android.support.v7.widget.RecyclerView>
+
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</LinearLayout>

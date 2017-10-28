@@ -10,9 +10,18 @@
     android:orientation="vertical"
     tools:context="com.example.lenovo.showbox.Activities.MainActivity">
 
+    <SearchView
+        android:id="@+id/search"
+        android:queryHint="Search Movies, TV Shows"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:showAsAction="collapseActionView|ifRoom"
+        />
+
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
         <LinearLayout
             android:id="@+id/content"
@@ -106,32 +115,29 @@
             </android.support.v7.widget.RecyclerView>
 
 
-            <com.wang.avi.AVLoadingIndicatorView
-                android:id="@+id/avi"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                style="@style/AVLoadingIndicatorView.Large"
-                android:visibility="invisible"
-                android:layout_gravity="center"
-                app:indicatorName="PacmanIndicator"
-                app:indicatorColor="@android:color/holo_red_dark"
-            />
-
-            <android.support.design.widget.BottomNavigationView
-                android:id="@+id/navigation"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
-                android:background="?android:attr/windowBackground"
-                app:menu="@menu/navigation"/>
-
-
         </LinearLayout>
 
 
-
-
     </ScrollView>
+
+    <com.wang.avi.AVLoadingIndicatorView
+        android:id="@+id/avi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/AVLoadingIndicatorView.Large"
+        android:visibility="invisible"
+        android:layout_gravity="center"
+        app:indicatorName="PacmanIndicator"
+        app:indicatorColor="@android:color/holo_red_dark"
+        />
+
+    <android.support.design.widget.BottomNavigationView
+        android:id="@+id/navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="?android:attr/windowBackground"
+        app:menu="@menu/navigation"/>
 
 
 </LinearLayout>

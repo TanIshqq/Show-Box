@@ -1,5 +1,6 @@
 package com.example.lenovo.showbox.Activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -9,6 +10,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.SearchView;
 import android.widget.TextView;
 
 import com.example.lenovo.showbox.Adapters.Layout_adapter;
@@ -31,7 +33,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
-
+    SearchView simpleSearchView;
     RecyclerView mRecyclerView;
     RecyclerView UMRecyclerView;
     RecyclerView TRRecyclerView;
@@ -74,7 +76,6 @@ public class MainActivity extends AppCompatActivity {
                     imageView.setImageResource(R.drawable.collage);
                     avi = (AVLoadingIndicatorView) findViewById(R.id.avi);
                     Services service = apiClient.getClient().create(Services.class);
-
                     Call<Movies1> moviesResponseCall = service.getMovies();
                     Call<Movies1> moviesResponseCall1 = service.getUpcomingMovies();
                     Call<Movies1> moviesResponseCall2 = service.getTopRatedMovies();
@@ -305,13 +306,34 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         mRecyclerView = (RecyclerView)findViewById(R.id.recyclerView);
         UMRecyclerView = (RecyclerView)findViewById(R.id.recyclerView1);
         TRRecyclerView = (RecyclerView)findViewById(R.id.recyclerView2);
         PLRecyclerView = (RecyclerView)findViewById(R.id.recyclerView3);
+
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        simpleSearchView = (SearchView) findViewById(R.id.search);
+        CharSequence query = simpleSearchView.getQuery();
+        simpleSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                Intent intent = new Intent(MainActivity.this,Search_Activity.class);
+                Bundle b = new Bundle();
+                b.putString("Query",query);
+                intent.putExtras(b);
+                startActivity(intent);
+                finish();
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+
+        });
+
     }
 
 }
