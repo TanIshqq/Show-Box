@@ -8,6 +8,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.lenovo.showbox.Adapters.Layout_adapter;
 import com.example.lenovo.showbox.Adapters.SearchAdapter;
@@ -57,6 +58,7 @@ public class Search_Activity extends AppCompatActivity {
         avi.setVisibility(View.VISIBLE);
         avi.smoothToShow();
 
+
         searchMoviesResponseCall.enqueue(new Callback<Movies1>() {
             @Override
             public void onResponse(Call<Movies1> call, Response<Movies1> response) {
@@ -86,16 +88,27 @@ public class Search_Activity extends AppCompatActivity {
 
             }
         });
+
+//
+
     }
 
 
 
     private void setmyMsearchadapter() {
         SearchAdapter = new SearchAdapter(this, mSmovies);
-        movieRecyclerView.setAdapter(SearchAdapter);
-        movieRecyclerView.setLayoutManager(new LinearLayoutManager(Search_Activity.this, LinearLayoutManager.HORIZONTAL,false));
-        box1.setText("Movies");
-        SearchAdapter.notifyDataSetChanged();
+        if(mSmovies.length==0){
+            Toast.makeText(this,"No Movies / Tv Shows Found",Toast.LENGTH_SHORT).show();
+            finish();
+
+        }
+        else{
+            movieRecyclerView.setAdapter(SearchAdapter);
+            movieRecyclerView.setLayoutManager(new LinearLayoutManager(Search_Activity.this, LinearLayoutManager.HORIZONTAL,false));
+            box1.setText("Movies");
+            SearchAdapter.notifyDataSetChanged();
+        }
+
     }
 
     private void setmyTsearchadapter() {

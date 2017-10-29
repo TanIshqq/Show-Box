@@ -51,8 +51,15 @@ public class TvShows1 {
         }
 
         public String getPoster() {
-            return TMDB_IMAGE_PATH + poster;
+            if(poster==null){
+                return null;
+            }
+            else{
+                return TMDB_IMAGE_PATH + poster;
+            }
+
         }
+
 
         public void setPoster(String poster) {
             this.poster = poster;

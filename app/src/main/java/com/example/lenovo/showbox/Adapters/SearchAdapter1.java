@@ -33,11 +33,17 @@ public class SearchAdapter1 extends RecyclerView.Adapter<SearchAdapter1.TvViewHo
     public void onBindViewHolder(SearchAdapter1.TvViewHolder holder, int position) {
 
         TvShows1.TvShows TvShows = mTvShows[position];
-        holder.titleTextView.setText(TvShows.getOriginal_name());
-        holder.dateTextView.setText(TvShows.getFirst_air_date());
-        holder.voteTextView.setText(TvShows.getVote_average() + "");
-        holder.adultTextView.setText(TvShows.getOriginal_language());
-        Picasso.with(mContext).load(TvShows.getPoster()).resize(2300, 1000).centerInside().into(holder.poster);
+        if(TvShows.getPoster()==null){
+
+        }
+        else{
+            holder.titleTextView.setText(TvShows.getOriginal_name());
+            holder.dateTextView.setText(TvShows.getFirst_air_date());
+            holder.voteTextView.setText(TvShows.getVote_average() + "");
+            holder.adultTextView.setText(TvShows.getOriginal_language());
+            Picasso.with(mContext).load(TvShows.getPoster()).resize(2300, 1000).centerInside().into(holder.poster);
+        }
+
 
 
     }

@@ -1,6 +1,9 @@
 package com.example.lenovo.showbox.Activities;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -12,6 +15,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.SearchView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.lenovo.showbox.Adapters.Layout_adapter;
 import com.example.lenovo.showbox.Adapters.Play_LayoutAdapter;
@@ -302,37 +306,132 @@ public class MainActivity extends AppCompatActivity {
         nOAdapter.notifyDataSetChanged();
     }
 
+    public static boolean isNetworkStatusAvialable (Context context) {
+        ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        if (connectivityManager != null)
+        {
+            NetworkInfo netInfos = connectivityManager.getActiveNetworkInfo();
+            if(netInfos != null)
+                if(netInfos.isConnected())
+                    return true;
+        }
+        return false;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mRecyclerView = (RecyclerView)findViewById(R.id.recyclerView);
-        UMRecyclerView = (RecyclerView)findViewById(R.id.recyclerView1);
-        TRRecyclerView = (RecyclerView)findViewById(R.id.recyclerView2);
-        PLRecyclerView = (RecyclerView)findViewById(R.id.recyclerView3);
+        if(!isNetworkStatusAvialable (getApplicationContext())) {
+            Toast.makeText(getApplicationContext(), "No Internet Connection", Toast.LENGTH_LONG).show();
+        } else {
 
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
-        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-        simpleSearchView = (SearchView) findViewById(R.id.search);
-        CharSequence query = simpleSearchView.getQuery();
-        simpleSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                Intent intent = new Intent(MainActivity.this,Search_Activity.class);
-                Bundle b = new Bundle();
-                b.putString("Query",query);
-                intent.putExtras(b);
-                startActivity(intent);
-                finish();
-                return true;
-            }
+            mRecyclerView = (RecyclerView)findViewById(R.id.recyclerView);
+            UMRecyclerView = (RecyclerView)findViewById(R.id.recyclerView1);
+            TRRecyclerView = (RecyclerView)findViewById(R.id.recyclerView2);
+            PLRecyclerView = (RecyclerView)findViewById(R.id.recyclerView3);
 
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                return false;
-            }
+            box1 = (TextView)findViewById(R.id.box1);
+            box2 = (TextView)findViewById(R.id.box2);
+            box3 = (TextView)findViewById(R.id.box3);
+            box4 = (TextView)findViewById(R.id.box4);
+            imageView = (ImageView)findViewById(R.id.imageView);
+            imageView.setImageResource(R.drawable.collage);
+            avi = (AVLoadingIndicatorView) findViewById(R.id.avi);
+            Services service = apiClient.getClient().create(Services.class);
+            Call<Movies1> moviesResponseCall = service.getMovies();
+            Call<Movies1> moviesResponseCall1 = service.getUpcomingMovies();
+            Call<Movies1> moviesResponseCall2 = service.getTopRatedMovies();
+            Call<Movies1> moviesResponseCall3 = service.getPlayingMovies();
+            avi.setVisibility(View.VISIBLE);
+            avi.smoothToShow();
 
-        });
+            moviesResponseCall.enqueue(new Callback<Movies1>() {
+                @Override
+                public void onResponse(Call<Movies1> call, Response<Movies1> response) {
+                    Movies1 movies1 = response.body();
+                    movies = movies1.getresults();
+                    setmyadapter();
+
+                }
+
+                @Override
+                public void onFailure(Call<Movies1> call, Throwable t) {
+
+                }
+            });
+
+            moviesResponseCall1.enqueue(new Callback<Movies1>() {
+                @Override
+                public void onResponse(Call<Movies1> call, Response<Movies1> response) {
+                    Movies1 movies1 = response.body();
+                    UMmovies = movies1.getresults();
+                    UMsetmyadapter();
+
+                }
+
+                @Override
+                public void onFailure(Call<Movies1> call, Throwable t) {
+
+                }
+            });
+
+            moviesResponseCall2.enqueue(new Callback<Movies1>() {
+                @Override
+                public void onResponse(Call<Movies1> call, Response<Movies1> response) {
+                    Movies1 movies1 = response.body();
+                    TRmovies = movies1.getresults();
+                    TRsetmyadapter();
+
+                }
+
+                @Override
+                public void onFailure(Call<Movies1> call, Throwable t) {
+
+                }
+            });
+
+            moviesResponseCall3.enqueue(new Callback<Movies1>() {
+                @Override
+                public void onResponse(Call<Movies1> call, Response<Movies1> response) {
+                    Movies1 movies1 = response.body();
+                    PLmovies = movies1.getresults();
+                    PLsetmyadapter();
+
+                }
+
+                @Override
+                public void onFailure(Call<Movies1> call, Throwable t) {
+
+                }
+            });
+
+
+
+            BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+            navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+            simpleSearchView = (SearchView) findViewById(R.id.search);
+            CharSequence query = simpleSearchView.getQuery();
+            simpleSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+                @Override
+                public boolean onQueryTextSubmit(String query) {
+                    Intent intent = new Intent(MainActivity.this,Search_Activity.class);
+                    Bundle b = new Bundle();
+                    b.putString("Query",query);
+                    intent.putExtras(b);
+                    startActivity(intent);
+                    return true;
+                }
+
+                @Override
+                public boolean onQueryTextChange(String newText) {
+                    return false;
+                }
+
+            });
+
+        }
+
 
     }
 

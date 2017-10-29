@@ -2,6 +2,7 @@ package com.example.lenovo.showbox.Adapters;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,7 +22,6 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.MovieViewH
 
     private Context mContext;
     private Movies1.Movies mMovies[];
-    private TvShows1.TvShows mTvShows[];
     private SearchAdapter.MovieClickListener mListener;
 
     @Override
@@ -34,16 +34,24 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.MovieViewH
     public void onBindViewHolder(SearchAdapter.MovieViewHolder holder, int position) {
 
         Movies1.Movies movie = mMovies[position];
-        holder.titleTextView.setText(movie.getTitle());
-        holder.dateTextView.setText(movie.getRelease_date());
-        if(movie.getAdult()==false){
-            holder.adultTextView.setText("U/A");
+        if(movie.getPoster()==null){
+
         }
         else{
-            holder.adultTextView.setText("ADULT");
+            holder.titleTextView.setText(movie.getTitle());
+            holder.dateTextView.setText(movie.getRelease_date());
+            if(movie.getAdult()==false){
+                holder.adultTextView.setText("U/A");
+            }
+            else{
+                holder.adultTextView.setText("ADULT");
+            }
+            holder.voteTextView.setText(movie.getVote_average() + "");
+            Picasso.with(mContext).load(movie.getPoster()).resize(2300, 1000).centerInside().into(holder.poster);
+
         }
-        holder.voteTextView.setText(movie.getVote_average() + "");
-        Picasso.with(mContext).load(movie.getPoster()).resize(2300, 1000).centerInside().into(holder.poster);
+
+
 
 
     }
