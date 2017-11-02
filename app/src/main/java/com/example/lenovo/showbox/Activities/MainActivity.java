@@ -430,7 +430,12 @@ public class MainActivity extends AppCompatActivity {
 
             });
 
-
+            imageView.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    Intent intent = new Intent(MainActivity.this,Discover.class);
+                    startActivity(intent);
+                }
+            });
 
 
         }

@@ -48,6 +48,10 @@ public interface Services {
     @GET("search/tv/?api_key=4db11af8b81b5f51233f56e9078e9c07&language=en-US&query")
     Call<TvShows1> searchTvShows(@Query("query") String query);
 
+    //DISCOVER
+
+
+
 
 
 }

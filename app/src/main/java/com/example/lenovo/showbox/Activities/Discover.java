@@ -1,22 +1,26 @@
 package com.example.lenovo.showbox.Activities;
 
+import android.app.Activity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.example.lenovo.showbox.R;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Discover extends AppCompatActivity {
+public class Discover extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
 
-    private Spinner spinner1, spinner2, spinner3;
+    private Spinner spinner1, spinner2, spinner3,spinner4,spinner5,spinner6;
     private Button submit;
 
     @Override
@@ -25,54 +29,66 @@ public class Discover extends AppCompatActivity {
         setContentView(R.layout.activity_discover);
 
         spinner1 = (Spinner) findViewById(R.id.category);
+        spinner1.setOnItemSelectedListener(this);
         spinner2 = (Spinner) findViewById(R.id.language);
+        spinner2.setOnItemSelectedListener(this);
         spinner3 = (Spinner) findViewById(R.id.ratings);
+        spinner3.setOnItemSelectedListener(this);
+        spinner4 = (Spinner) findViewById(R.id.adult);
+        spinner4.setOnItemSelectedListener(this);
+        spinner5 = (Spinner) findViewById(R.id.year);
+        spinner5.setOnItemSelectedListener(this);
+        spinner6 = (Spinner) findViewById(R.id.sortby);
+        spinner6.setOnItemSelectedListener(this);
+
         submit = (Button) findViewById(R.id.submit);
 
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.spinner_category, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner1.setAdapter(adapter);
 
-        public void addItemsOnSpinner1() {
+        ArrayAdapter<CharSequence> adapter1 = ArrayAdapter.createFromResource(this, R.array.spinner_language, android.R.layout.simple_spinner_item);
+        adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner2.setAdapter(adapter1);
 
-            List<String> list = new ArrayList<String>();
-            list.add("Movies");
-            list.add("Tv Shows");
-            ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, list);
-            dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-            spinner1.setAdapter(dataAdapter);
-        }
+        ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this, R.array.spinner_ratings, android.R.layout.simple_spinner_item);
+        adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner3.setAdapter(adapter2);
 
-        public void addItemsOnSpinner2(){
+        ArrayAdapter<CharSequence> adapter3 = ArrayAdapter.createFromResource(this, R.array.spinner_adult, android.R.layout.simple_spinner_item);
+        adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner4.setAdapter(adapter3);
 
-            List<String> list = new ArrayList<String>();
-            list.add("English");
-            list.add("Hindi");
-            list.add("French");
-            list.add("Japanese");
-            ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, list);
-            dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-            spinner2.setAdapter(dataAdapter);
-        }
+        ArrayAdapter<CharSequence> adapter4 = ArrayAdapter.createFromResource(this, R.array.spinner_year, android.R.layout.simple_spinner_item);
+        adapter4.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner5.setAdapter(adapter4);
 
-        public void addItemsOnSpinner3(){
-
-            List<String> list = new ArrayList<String>();
-            list.add("5.0");
-            list.add("6.0");
-            list.add("7.0");
-            list.add("8.0");
-            list.add("9.0");
-            ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, list);
-            dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-            spinner3.setAdapter(dataAdapter);
-        }
-
-
-//                            "\nSpinner 1 : "+ String.valueOf(spinner1.getSelectedItem()) +
-//                            "\nSpinner 2 : "+ String.valueOf(spinner2.getSelectedItem()),
-
-
-        Animation animation = AnimationUtils.loadAnimation(Discover.this, R.anim.rotate);
-
+        ArrayAdapter<CharSequence> adapter5 = ArrayAdapter.createFromResource(this, R.array.spinner_sortby, android.R.layout.simple_spinner_item);
+        adapter5.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner6.setAdapter(adapter5);
 
 
     }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        String category = String.valueOf(spinner1.getSelectedItem());
+        String language = String.valueOf(spinner2.getSelectedItem());
+        String ratings = String.valueOf(spinner3.getSelectedItem());
+        String adult = String.valueOf(spinner4.getSelectedItem());
+        String year = String.valueOf(spinner5.getSelectedItem());
+        String sortby = String.valueOf(spinner6.getSelectedItem());
+
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
+    }
+
+    public void Done(View view){
+        Animation animation = AnimationUtils.loadAnimation(Discover.this,R.anim.rotate);
+        submit.startAnimation(animation);
+    }
+
 }

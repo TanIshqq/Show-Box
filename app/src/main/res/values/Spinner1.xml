@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="spinner_category">
+        <item>Movies</item>
+        <item>Tv Shows</item>
+        <item>Celebrities</item>
+    </string-array>
+
+    <string-array name="spinner_language">
+        <item>English</item>
+        <item>Hindi</item>
+        <item>French</item>
+        <item>Japanese</item>
+    </string-array>
+
+    <string-array name="spinner_adult">
+        <item>Adult</item>
+        <item>U/A</item>
+        <item>U</item>
+
+    </string-array>
+
+    <string-array name="spinner_ratings">
+        <item>5.0</item>
+        <item>6.0</item>
+        <item>7.0</item>
+        <item>8.0</item>
+        <item>9.0</item>
+    </string-array>
+
+    <string-array name="spinner_sortby">
+        <item>Popularity Ascending</item>
+        <item>Popularity Descending</item>
+        <item>Year Ascending</item>
+        <item>Year Descending</item>
+    </string-array>
+
+    <string-array name="spinner_year">
+        <item>Beyond 2010</item>
+        <item>Beyond 2000</item>
+        <item>Beyond 1990</item>
+        <item>Beyond 1980</item>
+        <item>Beyond 1970</item>
+    </string-array>
+
+</resources>

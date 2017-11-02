@@ -7,6 +7,17 @@
     android:orientation="vertical"
     tools:context="com.example.lenovo.showbox.Activities.Discover">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="DISCOVER"
+        android:layout_gravity="center"
+        android:textSize="40dp"
+        android:textStyle="bold"
+        android:background="#E1F5FE"
+        android:textColor="@android:color/black"
+        />
 
     <Spinner
         android:id="@+id/category"
@@ -24,11 +35,33 @@
 
 
     <Spinner
+        android:id="@+id/year"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/shade2"/>
+
+    <Spinner
         android:id="@+id/ratings"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:background="@color/shade3"/>
+
+
+    <Spinner
+        android:id="@+id/adult"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/shade5"/>
+
+    <Spinner
+        android:id="@+id/sortby"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/shade6"/>
 
 
 
@@ -38,7 +71,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:background="@drawable/circle"
-        android:layout_margin="10dp"/>
+        android:layout_margin="20dp"
+        android:onClick="Done"/>
 
 
 </LinearLayout>
