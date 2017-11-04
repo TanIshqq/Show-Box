@@ -21,12 +21,12 @@ Basically replica of IMDB
 You can search any movies, tv shows or person in it. It directs you to a new window.
 
 ### Discover 
-Apply filters and then search for a movie or tv show and it will search for you results matching your preferneces.
+Apply filters and then search for a movie or tv show and it will search for you results matching your preferences.
 
 ### Favourites   
-You also have the option to save your favourite movies and tv shows in the databse.
+You also have the option to save your favourite movies and tv shows in the database.
 
-##### Brodcast Recuevers for No Internet connections.
+##### Brodcast Recievers for No Internet connections.
 
 
   
