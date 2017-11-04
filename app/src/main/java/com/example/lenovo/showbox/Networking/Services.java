@@ -28,6 +28,9 @@ public interface Services {
     @GET("movie/now_playing?api_key=4db11af8b81b5f51233f56e9078e9c07&language=en-US&page=1")
     Call<Movies1> getPlayingMovies();
 
+//    @GET("movie/{id}/{reviewId}/?api_key=4db11af8b81b5f51233f56e9078e9c07&language=en-US")
+//    Call<Movies1> getMovie(@Path("id") int movieId,@Path("reviewId") int reviewId,@Query("page") int pageNo );
+
     @GET("search/movie?api_key=4db11af8b81b5f51233f56e9078e9c07&language=en-US&query")
     Call<Movies1> searchMovies(@Query("query") String query);
 
@@ -50,6 +53,11 @@ public interface Services {
 
     //DISCOVER
 
+    @GET("discover/movie?api_key=4db11af8b81b5f51233f56e9078e9c07&page=1")
+    Call<Movies1> discoverMovies(@Query("language") String language,@Query("sort_by") String sortby, @Query("vote_average.gte") String ratings, @Query("include_adult") String adult,@Query("primary_release_year")  String year);
+
+    @GET("discover/tv?api_key=4db11af8b81b5f51233f56e9078e9c07&page=1")
+    Call<TvShows1> discoverTvShows(@Query("language") String language,@Query("sort_by") String sortby, @Query("vote_average.gte") String ratings);
 
 
 

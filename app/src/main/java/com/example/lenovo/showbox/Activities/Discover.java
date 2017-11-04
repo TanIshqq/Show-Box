@@ -1,8 +1,10 @@
 package com.example.lenovo.showbox.Activities;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -22,6 +24,7 @@ public class Discover extends AppCompatActivity implements AdapterView.OnItemSel
 
     private Spinner spinner1, spinner2, spinner3,spinner4,spinner5,spinner6;
     private Button submit;
+    String category,language,adult,sortby,ratings,year;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,12 +75,14 @@ public class Discover extends AppCompatActivity implements AdapterView.OnItemSel
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        String category = String.valueOf(spinner1.getSelectedItem());
-        String language = String.valueOf(spinner2.getSelectedItem());
-        String ratings = String.valueOf(spinner3.getSelectedItem());
-        String adult = String.valueOf(spinner4.getSelectedItem());
-        String year = String.valueOf(spinner5.getSelectedItem());
-        String sortby = String.valueOf(spinner6.getSelectedItem());
+        int t=0;
+        category = String.valueOf(spinner1.getSelectedItem());
+        language = String.valueOf(spinner2.getSelectedItem());
+        ratings = String.valueOf(spinner3.getSelectedItem());
+        adult = String.valueOf(spinner4.getSelectedItem());
+        year = String.valueOf(spinner5.getSelectedItem());
+        sortby = String.valueOf(spinner6.getSelectedItem());
+
 
     }
 
@@ -88,6 +93,31 @@ public class Discover extends AppCompatActivity implements AdapterView.OnItemSel
 
     public void Done(View view){
         Animation animation = AnimationUtils.loadAnimation(Discover.this,R.anim.rotate);
+        animation.setAnimationListener(new Animation.AnimationListener() {
+                    @Override
+                    public void onAnimationStart(Animation animation) {
+
+                    }
+
+                    @Override
+                    public void onAnimationEnd(Animation animation) {
+                        Intent intent = new Intent(Discover.this,DiscoverResult.class);
+                        Bundle b = new Bundle();
+                        b.putString("Category",category);
+                        b.putString("Language",language);
+                        b.putString("Ratings",ratings);
+                        b.putString("Adult",adult);
+                        b.putString("Year",year);
+                        b.putString("SortBy",sortby);
+                        intent.putExtras(b);
+                        startActivity(intent);
+                    }
+
+                    @Override
+                    public void onAnimationRepeat(Animation animation) {
+
+                    }
+                });
         submit.startAnimation(animation);
     }
 

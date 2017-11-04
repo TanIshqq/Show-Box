@@ -52,13 +52,14 @@ import com.squareup.picasso.Picasso;
 
         public interface MovieClickListener {
             void onItemClick(View view,int position);
-            void onRemoveClicked(int position);
+
         }
 
 
-        public Layout_adapter(Context context,Movies1.Movies movies1[]){
+        public Layout_adapter(Context context,Movies1.Movies movies1[], MovieClickListener mListener){
             mContext = context;
             this.mMovies = movies1;
+            this.mListener = mListener;
         }
 
         public static class MovieViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
@@ -86,9 +87,8 @@ import com.squareup.picasso.Picasso;
                 int id = view.getId();
                 int position = getAdapterPosition();
                 if(position != RecyclerView.NO_POSITION){
-                    if(id == R.id.recyclerView){
-                        mMovieClickListener.onItemClick(view,position);
-                    }
+                    mMovieClickListener.onItemClick(view,position);
+
                 }
 
             }

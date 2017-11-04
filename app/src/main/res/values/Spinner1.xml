@@ -22,18 +22,18 @@
     </string-array>
 
     <string-array name="spinner_ratings">
-        <item>5.0</item>
-        <item>6.0</item>
-        <item>7.0</item>
-        <item>8.0</item>
-        <item>9.0</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
     </string-array>
 
     <string-array name="spinner_sortby">
         <item>Popularity Ascending</item>
         <item>Popularity Descending</item>
-        <item>Year Ascending</item>
-        <item>Year Descending</item>
+        <item>Ratings Ascending</item>
+        <item>Ratings Descending</item>
     </string-array>
 
     <string-array name="spinner_year">

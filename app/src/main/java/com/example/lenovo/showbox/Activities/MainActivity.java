@@ -239,7 +239,13 @@ public class MainActivity extends AppCompatActivity {
     };
 
     private void setmyadapter() {
-        mAdapter = new Layout_adapter(this,movies);
+        mAdapter = new Layout_adapter(this, movies, new Layout_adapter.MovieClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                Toast.makeText(MainActivity.this,"Hello World",Toast.LENGTH_SHORT).show();
+            }
+
+        });
         mRecyclerView.setAdapter(mAdapter);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL,false));
         box1.setText("Popular Movies");
