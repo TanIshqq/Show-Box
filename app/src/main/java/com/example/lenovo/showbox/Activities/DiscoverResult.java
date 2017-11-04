@@ -38,6 +38,7 @@ public class DiscoverResult extends AppCompatActivity {
     DiscoverAdapter1 DiscoverAdapter1;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,69 +52,69 @@ public class DiscoverResult extends AppCompatActivity {
         sortby = b.getString("SortBy");
         adult = b.getString("Adult");
 
-        if(category=="Movies"){
-            category="movie";
-        }
-        else if(category=="Tv Shows"){
-            category="tv";
-        }
-
-        if(language=="English"){
-            language="en-US";
-        }
-        else if(language=="Hindi"){
-            language="hi-IN";
-        }
-        else if(language=="French"){
-            language="fr-FR";
-        }
-        else if(language=="Japanese"){
-            language="ja-JP";
-        }
-
-        if(year=="Beyond 2010"){
-            year="2010";
-        }
-        else if(year=="Beyond 2000"){
-            year="2000";
-        }
-        else if(year=="Beyond 1990"){
-            year="1990";
-        }
-        else if(year=="Beyond 1980"){
-            year="1980";
-        }
-        else if(year=="Beyond 1970"){
-            year="1970";
-        }
-
-        if(adult=="Adult"){
-            adult="true";
-        }
-        else if(adult=="U/A" || adult=="U"){
-            adult="false";
-        }
-
-        if(sortby=="Popularity Ascending"){
-            sortby="popularity.asc";
-        }
-        else if(sortby=="Popularity Descending"){
-            sortby="popularity.desc";
-        }
-        else if(sortby=="Ratings Ascending"){
-            sortby="vote_average.asc";
-        }
-        else if(sortby=="Ratings Descending"){
-            sortby="vote_average.desc";
-        }
-
+//        if(category=="Movies"){
+//            category="movie";
+//        }
+//        else if(category=="Tv Shows"){
+//            category="tv";
+//        }
+//
+//        if(language=="English"){
+//            language="en-US";
+//        }
+//        else if(language=="Hindi"){
+//            language="hi-IN";
+//        }
+//        else if(language=="French"){
+//            language="fr-FR";
+//        }
+//        else if(language=="Japanese"){
+//            language="ja-JP";
+//        }
+//
+//        if(year=="Beyond 2010"){
+//            year="2010";
+//        }
+//        else if(year=="Beyond 2000"){
+//            year="2000";
+//        }
+//        else if(year=="Beyond 1990"){
+//            year="1990";
+//        }
+//        else if(year=="Beyond 1980"){
+//            year="1980";
+//        }
+//        else if(year=="Beyond 1970"){
+//            year="1970";
+//        }
+//
+//        if(adult=="Adult"){
+//            adult="true";
+//        }
+//        else if(adult=="U/A" || adult=="U"){
+//            adult="false";
+//        }
+//
+//        if(sortby=="Popularity Ascending"){
+//            sortby="popularity.asc";
+//        }
+//        else if(sortby=="Popularity Descending"){
+//            sortby="popularity.desc";
+//        }
+//        else if(sortby=="Ratings Ascending"){
+//            sortby="vote_average.asc";
+//        }
+//        else if(sortby=="Ratings Descending"){
+//            sortby="vote_average.desc";
+//        }
+//
 
         DiscoveryRecyclerView = (RecyclerView) findViewById(R.id.discoverecyclerView);
         box1 = (TextView) findViewById(R.id.discovertextbox);
         avi = (AVLoadingIndicatorView) findViewById(R.id.avi);
         Services service = apiClient.getClient().create(Services.class);
-        if(category=="movie"){
-            Log.d("ghus gaya",category);
+
+
             Call<Movies1> discoverMoviesResponseCall = service.discoverMovies(language,sortby,ratings,adult,year);
             avi.setVisibility(View.VISIBLE);
             avi.smoothToShow();
@@ -132,31 +133,31 @@ public class DiscoverResult extends AppCompatActivity {
                 }
             });
 
-        }
-        else if(category=="tv"){
-            Call<TvShows1> discoverTvResponseCall = service.discoverTvShows(language,sortby,ratings);
-            avi.setVisibility(View.VISIBLE);
-            avi.smoothToShow();
-            discoverTvResponseCall.enqueue(new Callback<TvShows1>() {
-                @Override
-                public void onResponse(Call<TvShows1> call, Response<TvShows1> response) {
-                    TvShows1 tvshows1 = response.body();
-                    nDshows = tvshows1.getResults();
-                    setmyTdiscoveradapter();
 
-                }
-
-                @Override
-                public void onFailure(Call<TvShows1> call, Throwable t) {
-
-                }
-            });
-
-        }
-
-
+//
+//            Call<TvShows1> discoverTvResponseCall = service.discoverTvShows(language,sortby,ratings);
+//            avi.setVisibility(View.VISIBLE);
+//            avi.smoothToShow();
+//            discoverTvResponseCall.enqueue(new Callback<TvShows1>() {
+//                @Override
+//                public void onResponse(Call<TvShows1> call, Response<TvShows1> response) {
+//                    TvShows1 tvshows1 = response.body();
+//                    nDshows = tvshows1.getResults();
+//                    setmyTdiscoveradapter();
+//
+//                }
+//
+//                @Override
+//                public void onFailure(Call<TvShows1> call, Throwable t) {
+//
+//                }
+//            });
 
     }
+
+
+
+
 
     private void setmyMdiscoveradapter() {
         DiscoverAdapter = new DiscoverAdapter(this, mDmovies, new DiscoverAdapter.MovieClickListener() {
@@ -172,7 +173,7 @@ public class DiscoverResult extends AppCompatActivity {
         }
         else{
             DiscoveryRecyclerView.setAdapter(DiscoverAdapter);
-            DiscoveryRecyclerView.setLayoutManager(new GridLayoutManager(DiscoverResult.this,3));
+            DiscoveryRecyclerView.setLayoutManager(new GridLayoutManager(DiscoverResult.this,2));
             avi.smoothToHide();
             avi.setVisibility(View.GONE);
             box1.setText("Movies");
@@ -189,7 +190,7 @@ public class DiscoverResult extends AppCompatActivity {
         }
         else{
             DiscoveryRecyclerView.setAdapter(DiscoverAdapter1);
-            DiscoveryRecyclerView.setLayoutManager(new GridLayoutManager(DiscoverResult.this,3));
+            DiscoveryRecyclerView.setLayoutManager(new GridLayoutManager(DiscoverResult.this,2));
             avi.smoothToHide();
             avi.setVisibility(View.GONE);
             box1.setText("TV Shows");

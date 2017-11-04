@@ -75,7 +75,6 @@ public class Discover extends AppCompatActivity implements AdapterView.OnItemSel
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        int t=0;
         category = String.valueOf(spinner1.getSelectedItem());
         language = String.valueOf(spinner2.getSelectedItem());
         ratings = String.valueOf(spinner3.getSelectedItem());
