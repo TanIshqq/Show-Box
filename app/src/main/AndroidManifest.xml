@@ -25,12 +25,16 @@
         <activity
             android:name=".Activities.Search_Activity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Activities.Discover" />
-        <activity
-            android:name=".Activities.MovieDetailActivity"
-            android:label="@string/title_activity_movie_detail"
+
+        <activity android:name=".Activities.Discover"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Activities.DiscoverResult"></activity>
+
+        <activity android:name=".Activities.DiscoverResult"
+            android:theme="@style/AppTheme.NoActionBar"/>
+
+        <activity android:name=".Activities.MovieDetail"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+
     </application>
 
 </manifest>

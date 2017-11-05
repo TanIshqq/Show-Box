@@ -60,6 +60,9 @@ public interface Services {
     Call<TvShows1> discoverTvShows(@Query("language") String language,@Query("sort_by") String sortby, @Query("vote_average.gte") String ratings);
 
 
+    //DETAILS
+    @GET("movie/{id}?api_key=4db11af8b81b5f51233f56e9078e9c07&language=en-US")
+    Call<Movie_Detail> getDeatilsMovie(@Path("id") int movieId);
 
 
 }

@@ -20,6 +20,7 @@ import com.squareup.picasso.Picasso;
         private Context mContext;
         private Movies1.Movies mMovies[];
         private MovieClickListener mListener;
+        static int Movie_ID;
 
         @Override
         public MovieViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -31,6 +32,7 @@ import com.squareup.picasso.Picasso;
         public void onBindViewHolder(MovieViewHolder holder, int position) {
 
             Movies1.Movies movie = mMovies[position];
+            Movie_ID = movie.getId();
             holder.titleTextView.setText(movie.getTitle());
             holder.dateTextView.setText(movie.getRelease_date());
             if(movie.getAdult()==false){
@@ -51,7 +53,7 @@ import com.squareup.picasso.Picasso;
         }
 
         public interface MovieClickListener {
-            void onItemClick(View view,int position);
+            void onItemClick(View view,int position, int id);
 
         }
 
@@ -84,10 +86,9 @@ import com.squareup.picasso.Picasso;
 
             @Override
             public void onClick(View view) {
-                int id = view.getId();
                 int position = getAdapterPosition();
                 if(position != RecyclerView.NO_POSITION){
-                    mMovieClickListener.onItemClick(view,position);
+                    mMovieClickListener.onItemClick(view,position,Movie_ID);
 
                 }
 
