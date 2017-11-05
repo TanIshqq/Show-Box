@@ -2,21 +2,21 @@
 <resources>
 
     <string-array name="spinner_category">
-        <item>movie</item>
-        <item>tv</item>
+        <item>Movies</item>
+        <item>Tv Shows</item>
     </string-array>
 
     <string-array name="spinner_language">
-        <item>en-US</item>
-        <item>hi-IN</item>
-        <item>fr-FR</item>
-        <item>ja-JP</item>
+        <item>English</item>
+        <item>Hindi</item>
+        <item>French</item>
+        <item>Japanese</item>
     </string-array>
 
     <string-array name="spinner_adult">
-        <item>false</item>
-        <item>true</item>
-        <!--<item>U</item>-->
+        <item>U/A</item>
+        <item>U</item>
+        <item>Adult</item>
 
     </string-array>
 
@@ -29,18 +29,18 @@
     </string-array>
 
     <string-array name="spinner_sortby">
-        <item>popularity.asc</item>
-        <item>popularity.desc</item>
-        <item>vote_average.asc</item>
-        <item>vote_average.desc</item>
+        <item>Popularity Ascending</item>
+        <item>Popularity Descending</item>
+        <item>Ratings Ascending</item>
+        <item>Ratings Descending</item>
     </string-array>
 
     <string-array name="spinner_year">
-        <item>2010</item>
-        <item>2000</item>
-        <item>1990</item>
-        <item>1980</item>
-        <item>1970</item>
+        <item>Beyond 2010</item>
+        <item>Beyond 2000</item>
+        <item>Beyond 1990</item>
+        <item>Beyond 1980</item>
+        <item>Beyond 1970</item>
     </string-array>
 
 </resources>

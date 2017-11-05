@@ -2,6 +2,7 @@ package com.example.lenovo.showbox.Adapters;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,7 +21,7 @@ import com.squareup.picasso.Picasso;
         private Context mContext;
         private Movies1.Movies mMovies[];
         private MovieClickListener mListener;
-        static int Movie_ID;
+        int Movie_ID;
 
         @Override
         public MovieViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -29,10 +30,10 @@ import com.squareup.picasso.Picasso;
         }
 
         @Override
-        public void onBindViewHolder(MovieViewHolder holder, int position) {
+        public void onBindViewHolder(MovieViewHolder holder, final int position) {
 
-            Movies1.Movies movie = mMovies[position];
-            Movie_ID = movie.getId();
+            final Movies1.Movies movie = mMovies[position];
+           // Movie_ID = movie.getId();
             holder.titleTextView.setText(movie.getTitle());
             holder.dateTextView.setText(movie.getRelease_date());
             if(movie.getAdult()==false){
@@ -43,6 +44,15 @@ import com.squareup.picasso.Picasso;
             }
             holder.voteTextView.setText(movie.getVote_average() + "");
             Picasso.with(mContext).load(movie.getPoster()).resize(2300, 1000).centerInside().into(holder.poster);
+
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Log.i("TAG", "onClick: "+movie.getId());
+                    mListener.onItemClick(v,position,movie.getId());
+
+                }
+            });
 
 
         }
@@ -64,7 +74,7 @@ import com.squareup.picasso.Picasso;
             this.mListener = mListener;
         }
 
-        public static class MovieViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+        public static class MovieViewHolder extends RecyclerView.ViewHolder {
 
             TextView titleTextView;
             TextView voteTextView;
@@ -75,7 +85,6 @@ import com.squareup.picasso.Picasso;
 
             public MovieViewHolder(View itemView,MovieClickListener listener) {
                 super(itemView);
-                itemView.setOnClickListener(this);
                 mMovieClickListener = listener;
                 titleTextView = (TextView) itemView.findViewById(R.id.title);
                 voteTextView = (TextView) itemView.findViewById(R.id.vote);
@@ -83,7 +92,7 @@ import com.squareup.picasso.Picasso;
                 dateTextView = (TextView) itemView.findViewById(R.id.date);
                 poster = (ImageView) itemView.findViewById(R.id.poster);
             }
-
+/*
             @Override
             public void onClick(View view) {
                 int position = getAdapterPosition();
@@ -92,7 +101,7 @@ import com.squareup.picasso.Picasso;
 
                 }
 
-            }
+            }*/
         }
  }
 

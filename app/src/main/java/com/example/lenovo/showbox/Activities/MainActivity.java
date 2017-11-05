@@ -11,6 +11,7 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -243,6 +244,7 @@ public class MainActivity extends AppCompatActivity {
         mAdapter = new Layout_adapter(this, movies, new Layout_adapter.MovieClickListener() {
             @Override
             public void onItemClick(View view, int position ,  int id) {
+                Log.i("TAG", "onItemClick: "+id);
                 Intent intent = new Intent(MainActivity.this,MovieDetail.class);
                 Bundle b = new Bundle();
                 b.putInt("Movie_ID",id);
